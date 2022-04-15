@@ -88,7 +88,9 @@ public class YatzyTest {
         Assertions.assertEquals(16, Yatzy.two_pair(3,3,5,4,5));
         Assertions.assertEquals(18, Yatzy.two_pair(4,4,5,5,5));
         Assertions.assertEquals(6, Yatzy.two_pair(1,1,2,2,5));
-        Assertions.assertEquals(0, Yatzy.two_pair(1,1,2,3,5));
+        Assertions.assertEquals(12, Yatzy.two_pair(1,2,2,4,4));
+        Assertions.assertEquals(14, Yatzy.two_pair(3,3,3,4,4));
+        Assertions.assertEquals(0, Yatzy.two_pair(1,2,2,3,5));
     }
 
     @Test

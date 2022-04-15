@@ -65,20 +65,12 @@ public class Yatzy {
 
     public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
 
-        List<Integer> list = Stream.of(d1, d2, d3, d4, d5).sorted().collect(Collectors.toList());
+        Map<Integer, Long> dicesOccurences = Stream.of(d1, d2, d3, d4, d5).collect(Collectors.groupingBy(p -> p, Collectors.counting()));
 
-        boolean isFirstPair = false;
-        int firstPair = 0;
-        for (int i = 0; i < list.size() - 1; i++) {
-            if (Objects.equals(list.get(i), list.get(i + 1))) {
-                if (!isFirstPair) {
-                    isFirstPair = true;
-                    firstPair = list.get(i);
-                    i++;
-                } else if (list.get(i) != firstPair) {
-                    return firstPair * 2 + list.get(i) * 2;
-                }
-            }
+        Map<Integer, Long> twoPairMap = dicesOccurences.entrySet().stream().filter(aLong -> aLong.getValue() >= 2).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        if(twoPairMap.size()==2){
+            return 2 * twoPairMap.keySet().stream().mapToInt(Integer::intValue).sum();
         }
 
         return 0;
